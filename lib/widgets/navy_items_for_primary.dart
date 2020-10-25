@@ -13,11 +13,11 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
       navyList.add(BottomNavyBarItem(
           activeColor: Colors.brown,
           title: Text('Auths',  style: TextStyle(color: Colors.white),),
-          icon: Icon(Icons.home, color: Colors.white,)
+          icon: Icon(Icons.login_rounded, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
-          title: Text('User+', style: TextStyle(color: Colors.white),),
-          icon: Icon(Icons.add, color: Colors.white)
+          title: Text('Users', style: TextStyle(color: Colors.white),),
+          icon: Icon(Icons.accessibility_new, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
           title: Text('Orders', style: TextStyle(color: Colors.white),),

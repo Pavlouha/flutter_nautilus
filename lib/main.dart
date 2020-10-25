@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nautilus/pages/login_screen.dart';
-import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 
 void main() {
   runApp(MyApp());
