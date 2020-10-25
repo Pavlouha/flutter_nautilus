@@ -22,7 +22,7 @@ environment:
 
 dependencies:
   dio: ^3.0.10
-  shared_preferences: ^0.5.12+2
+  barbarian: ^0.2.26+10
   json_annotation: ^3.1.0
   rflutter_alert: ^1.1.0
   double_back_to_close_app: ^1.2.0

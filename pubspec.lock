@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0-nullsafety.1"
+  barbarian:
+    dependency: "direct main"
+    description:
+      name: barbarian
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.26+10"
   boolean_selector:
     dependency: transitive
     description:
@@ -437,7 +444,7 @@ packages:
     source: hosted
     version: "1.1.0"
   shared_preferences:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shared_preferences
       url: "https://pub.dartlang.org"
@@ -539,6 +546,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.1"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0+2"
   term_glyph:
     dependency: transitive
     description:
