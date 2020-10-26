@@ -9,6 +9,8 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
   //TODO тут сделать правильные иконки и тэдэ
 
   switch (user.role.id) {
+
+    ///МЕНЮ КАПИТАНА
     case 0: {
       navyList.add(BottomNavyBarItem(
           activeColor: Colors.brown,
@@ -16,10 +18,12 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
           icon: Icon(Icons.login_rounded, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
+          activeColor: Colors.brown,
           title: Text('Users', style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.accessibility_new, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
+          activeColor: Colors.brown,
           title: Text('Orders', style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.settings, color: Colors.white)
       ),);

@@ -9,9 +9,7 @@ part of 'auth_class.dart';
 AuthClass _$AuthClassFromJson(Map<String, dynamic> json) {
   return AuthClass(
     json['id'] as int,
-    json['loginDate'] == null
-        ? null
-        : DateTime.parse(json['loginDate'] as String),
+    json['loginDate'] as String,
     json['user'] as String,
     json['userId'] as int,
   );
@@ -19,7 +17,7 @@ AuthClass _$AuthClassFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AuthClassToJson(AuthClass instance) => <String, dynamic>{
       'id': instance.id,
-      'loginDate': instance.loginDate?.toIso8601String(),
+      'loginDate': instance.loginDate,
       'user': instance.user,
       'userId': instance.userId,
     };

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nautilus/models/user.dart';
+import 'package:flutter_nautilus/pages/authentications.dart';
 
-List<Widget> primaryMenu(User user) {
+List<Widget> primaryMenu(User user, BuildContext context) {
 
-  //TODO сделать тут ссылки
+  /// Главная страница в виде пафосного меню
+  /// Здесь содержатся ссылки на все остальные страницы
 
   List<Widget> captainList = [];
-  captainList.add(Container(color: Colors.blueGrey));
+  captainList.add(AuthsPage(user));
   captainList.add(Container(color: Colors.red));
   captainList.add(Container(color: Colors.indigo));
 

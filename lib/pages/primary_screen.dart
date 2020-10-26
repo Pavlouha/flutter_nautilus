@@ -1,10 +1,9 @@
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter_nautilus/widgets/navy_items_for_primary.dart';
 import 'package:flutter_nautilus/widgets/primary_menu.dart';
-
-/// ГЛАВНАЯ СТРАНИЦА СО ВСЕМИ ШТУКАМИ. ЗДЕСЬ И БУДУТ ВЫЗЫВАТЬСЯ ДРУГИЕ АКТИВНОСТИ
 
 class PrimaryPage extends StatefulWidget {
   final User _user;
@@ -24,14 +23,19 @@ class _PrimaryPageState extends State<PrimaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
+      body: DoubleBackToCloseApp(
+        snackBar: const SnackBar(
+          content: Text('Tap back again to leave'),
+        ),
+        child: PageView(
           controller: _pageController,
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
           children:
-            primaryMenu(_user),
+          primaryMenu(_user, context),
         ),
+      ), 
       bottomNavigationBar: BottomNavyBar(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         iconSize: 33,

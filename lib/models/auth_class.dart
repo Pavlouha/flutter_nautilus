@@ -5,7 +5,7 @@ part 'auth_class.g.dart';
 @JsonSerializable()
 class AuthClass{
   int id;
-  DateTime loginDate;
+  String loginDate;
   String user;
   int userId;
 

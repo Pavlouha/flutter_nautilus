@@ -17,6 +17,8 @@ class _LoginPageState extends State<LoginPage> {
 
   var alertTitle = false;
 
+  //TODO сделать таки сохранение логина и пароля
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
