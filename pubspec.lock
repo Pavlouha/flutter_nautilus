@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "11.0.0"
+  airship_flutter:
+    dependency: "direct main"
+    description:
+      name: airship_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   analyzer:
     dependency: transitive
     description:
@@ -660,4 +667,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-  flutter: ">=1.12.13+hotfix.5 <2.0.0"
+  flutter: ">=1.20.4 <2.0.0"

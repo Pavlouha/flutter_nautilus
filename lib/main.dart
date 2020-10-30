@@ -1,10 +1,15 @@
 import 'package:barbarian/barbarian.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nautilus/pages/login_screen.dart';
+import 'package:airship_flutter/airship_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Barbarian.init();
+
+  //TODO попробовать сделать условия для уведомлений
+
+  Airship.setUserNotificationsEnabled(true);
   runApp(MyApp());
 }
 

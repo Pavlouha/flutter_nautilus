@@ -67,29 +67,23 @@ Future<bool> insertUser(String login, String password, List<Role> roles, String 
     }
   });
 
-  var formData = {
+  FormData formData = FormData.fromMap({
     "login": login,
     "password" : password,
     "roleId" : roleId.toString(),
     "username" : username,
     "cell" : cell
-  };
+  });
 
-/*  debugPrint(login);
-  debugPrint(password);
-  debugPrint(roleId.toString());
-  debugPrint(username);
-  debugPrint(cell); */
-
-  var response = await dio.post(connection + "user", data: jsonEncode(formData), options: Options(headers: {
-    HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
+  var response = await dio.post(connection + "user", data: formData, options: Options(headers: {
+    "Authorization" : "Bearer $token"
   }),);
 
   if (response.statusCode==200) {
     var data = response.data;
     return data;
   } else {
-    throw Exception('Failed to add user ');
+    throw Exception('Failed to add user');
   }
 
 }
