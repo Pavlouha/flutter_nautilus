@@ -7,18 +7,20 @@ import 'package:flutter_nautilus/widgets/primary_menu.dart';
 
 class PrimaryPage extends StatefulWidget {
   final User _user;
-  PrimaryPage(this._user);
+  final int startIndex;
+  PrimaryPage(this._user, this.startIndex);
   @override
-  _PrimaryPageState createState() => _PrimaryPageState(_user);
+  _PrimaryPageState createState() => _PrimaryPageState(_user, startIndex);
 }
 
 class _PrimaryPageState extends State<PrimaryPage> {
 
+  final User _user;
+  final int startIndex;
+  _PrimaryPageState(this._user, this.startIndex);
+
   int _currentIndex = 0;
   PageController _pageController;
-
-  final User _user;
-  _PrimaryPageState(this._user);
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,7 @@ class _PrimaryPageState extends State<PrimaryPage> {
   @override
   void initState() {
     super.initState();
+    int _currentIndex = startIndex;
     _pageController = PageController();
   }
 }

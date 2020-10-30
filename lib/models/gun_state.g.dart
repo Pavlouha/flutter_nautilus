@@ -8,12 +8,12 @@ part of 'gun_state.dart';
 
 GunState _$GunStateFromJson(Map<String, dynamic> json) {
   return GunState(
-    json['id'] as int,
+    json['gunStateId'] as int,
     json['title'] as String,
   );
 }
 
 Map<String, dynamic> _$GunStateToJson(GunState instance) => <String, dynamic>{
-      'id': instance.id,
+      'gunStateId': instance.gunStateId,
       'title': instance.title,
     };

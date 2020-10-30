@@ -5,10 +5,10 @@ part 'order_state.g.dart';
 
 @JsonSerializable()
 class OrderState extends State{
-  int id;
+  int orderStateId;
   String title;
 
-  OrderState(this.id, this.title) : super(id, title);
+  OrderState(this.orderStateId, this.title) : super();
 
   factory OrderState.fromJson(Map<String, dynamic> json) => _$OrderStateFromJson(json);
 

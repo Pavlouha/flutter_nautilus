@@ -8,7 +8,7 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
 
   //TODO тут сделать правильные иконки и тэдэ
 
-  switch (user.role.id) {
+  switch (user.role.roleId) {
 
     ///МЕНЮ КАПИТАНА
     case 0: {

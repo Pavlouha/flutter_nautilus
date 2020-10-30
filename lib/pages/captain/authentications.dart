@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nautilus/logic/auths.dart';
+import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/captain/auths.dart';
 import 'package:flutter_nautilus/models/auth_class.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
@@ -22,12 +22,12 @@ class _AuthsPageState extends State<AuthsPage> {
       title: Text('date/users', style: TextStyle(color: Colors.white)),
       actions: [
         IconButton(icon: Icon(Icons.update), color: Colors.white, onPressed: () =>
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user)),
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
                 (route) => false)),
         IconButton(icon: Icon(Icons.delete), color: Colors.white,
             onPressed: () {
           authorizationDelete(_user.token).then((value) {
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user)),
+            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
                     (route) => false);
           }
           );

@@ -4,12 +4,12 @@ part 'auth_class.g.dart';
 
 @JsonSerializable()
 class AuthClass{
-  int id;
+  int authId;
   String loginDate;
   String user;
   int userId;
 
-  AuthClass(this.id, this.loginDate, this.user, this.userId);
+  AuthClass(this.authId, this.loginDate, this.user, this.userId);
 
   factory AuthClass.fromJson(Map<String, dynamic> json) => _$AuthClassFromJson(json);
 

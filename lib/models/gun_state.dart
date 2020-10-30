@@ -5,10 +5,10 @@ part 'gun_state.g.dart';
 
 @JsonSerializable()
 class GunState extends State{
-  int id;
+  int gunStateId;
   String title;
 
-  GunState(this.id, this.title) : super(id, title);
+  GunState(this.gunStateId, this.title) : super();
 
   factory GunState.fromJson(Map<String, dynamic> json) => _$GunStateFromJson(json);
 

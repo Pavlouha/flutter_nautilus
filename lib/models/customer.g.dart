@@ -8,7 +8,7 @@ part of 'customer.dart';
 
 Customer _$CustomerFromJson(Map<String, dynamic> json) {
   return Customer(
-    json['id'] as int,
+    json['customerId'] as int,
     json['client'] as String,
     json['coords'] as String,
     json['connection'] as String,
@@ -16,7 +16,7 @@ Customer _$CustomerFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$CustomerToJson(Customer instance) => <String, dynamic>{
-      'id': instance.id,
+      'customerId': instance.customerId,
       'client': instance.client,
       'coords': instance.coords,
       'connection': instance.connection,

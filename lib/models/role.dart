@@ -4,10 +4,10 @@ part 'role.g.dart';
 
 @JsonSerializable()
 class Role {
-  int id;
+  int roleId;
   String title;
 
-  Role(this.id, this.title);
+  Role(this.roleId, this.title);
 
   factory Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
 

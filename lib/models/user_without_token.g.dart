@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'user_without_token.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return User(
-    json['token'] as String,
+UserWithoutToken _$UserWithoutTokenFromJson(Map<String, dynamic> json) {
+  return UserWithoutToken(
     json['userId'] as int,
     json['login'] as String,
     json['username'] as String,
     json['password'] as String,
-    Role(json['roleId'] as int, json['title'] as String),
+    Role(json['role']['roleId'] as int, json['role']['title'] as String),
     json['cell'] as String,
   );
 }
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-      'token': instance.token,
+Map<String, dynamic> _$UserWithoutTokenToJson(UserWithoutToken instance) =>
+    <String, dynamic>{
       'userId': instance.userId,
       'login': instance.login,
       'username': instance.username,

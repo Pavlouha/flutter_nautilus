@@ -6,7 +6,7 @@ part 'order.g.dart';
 
 @JsonSerializable()
 class Order{
-  int id;
+  int orderId;
   Customer customer;
   String commentary;
   int userId;
@@ -14,7 +14,7 @@ class Order{
   DateTime orderDate;
   OrderState orderState;
 
-  Order(this.id, this.customer, this.commentary, this.userId, this.userName, this.orderDate, this.orderState);
+  Order(this.orderId, this.customer, this.commentary, this.userId, this.userName, this.orderDate, this.orderState);
 
   factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 

@@ -8,13 +8,13 @@ part of 'order_state.dart';
 
 OrderState _$OrderStateFromJson(Map<String, dynamic> json) {
   return OrderState(
-    json['id'] as int,
+    json['orderStateId'] as int,
     json['title'] as String,
   );
 }
 
 Map<String, dynamic> _$OrderStateToJson(OrderState instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'orderStateId': instance.orderStateId,
       'title': instance.title,
     };

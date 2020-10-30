@@ -8,7 +8,7 @@ part of 'gun_in_order.dart';
 
 GunInOrder _$GunInOrderFromJson(Map<String, dynamic> json) {
   return GunInOrder(
-    json['id'] as int,
+    json['gunInOrderId'] as int,
     json['gun'] == null
         ? null
         : Gun.fromJson(json['gun'] as Map<String, dynamic>),
@@ -23,7 +23,7 @@ GunInOrder _$GunInOrderFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$GunInOrderToJson(GunInOrder instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'gunInOrderId': instance.gunInOrderId,
       'gun': instance.gun,
       'quantity': instance.quantity,
       'sum': instance.sum,

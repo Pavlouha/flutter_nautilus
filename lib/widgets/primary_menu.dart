@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/pages/captain/user_screen.dart';
 import 'package:flutter_nautilus/models/user.dart';
-import 'package:flutter_nautilus/pages/authentications.dart';
+import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/pages/captain/authentications.dart';
 
 List<Widget> primaryMenu(User user, BuildContext context) {
 
@@ -9,7 +10,7 @@ List<Widget> primaryMenu(User user, BuildContext context) {
 
   List<Widget> captainList = [];
   captainList.add(AuthsPage(user));
-  captainList.add(Container(color: Colors.red));
+  captainList.add(UsersPage(user));
   captainList.add(Container(color: Colors.indigo));
 
   List<Widget> conspiratorList = [];
@@ -29,7 +30,7 @@ List<Widget> primaryMenu(User user, BuildContext context) {
   storekeeperList.add(Container(color: Colors.blue));
   storekeeperList.add(Container(color: Colors.pink));
 
-  switch (user.role.id) {
+  switch (user.role.roleId) {
     case 0: {
       return captainList;
     }
