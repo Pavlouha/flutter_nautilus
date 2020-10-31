@@ -109,12 +109,6 @@ class _UsersPageState extends State<UsersPage> {
         ),
         buttons: [
           DialogButton(
-            onPressed:() => Navigator.pop(context),
-            child: Text( 'Close',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
-          DialogButton(
             color: Colors.red,
             onPressed:() {
               if (specific.role.roleId!=0) {

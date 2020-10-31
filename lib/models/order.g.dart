@@ -9,18 +9,14 @@ part of 'order.dart';
 Order _$OrderFromJson(Map<String, dynamic> json) {
   return Order(
     json['orderId'] as int,
-    json['customer'] == null
-        ? null
-        : Customer.fromJson(json['customer'] as Map<String, dynamic>),
+    Customer(json['customer']['customerId'] as int, json['customer']['client'] as String,
+      json['customer']['coords'] as String, json['customer']['connection'] as String,),
     json['commentary'] as String,
     json['userId'] as int,
     json['userName'] as String,
-    json['orderDate'] == null
-        ? null
-        : DateTime.parse(json['orderDate'] as String),
-    json['orderState'] == null
-        ? null
-        : OrderState.fromJson(json['orderState'] as Map<String, dynamic>),
+    json['orderDate'] as String,
+    OrderState(json['orderState']['orderStateId'] as int, json['orderState']['title'] as String),
+    OrderReviewState(json['orderReviewState']['orderReviewStateId'] as int, json['orderReviewState']['title'] as String),
   );
 }
 
@@ -30,6 +26,7 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'commentary': instance.commentary,
       'userId': instance.userId,
       'userName': instance.userName,
-      'orderDate': instance.orderDate?.toIso8601String(),
+      'orderDate': instance.orderDate,
       'orderState': instance.orderState,
+      'orderReviewState': instance.orderReviewState,
     };

@@ -6,8 +6,6 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
 
   List<BottomNavyBarItem> navyList = [];
 
-  //TODO тут сделать правильные иконки и тэдэ
-
   switch (user.role.roleId) {
 
     ///МЕНЮ КАПИТАНА
@@ -25,7 +23,7 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
       navyList.add( BottomNavyBarItem(
           activeColor: Colors.brown,
           title: Text('Orders', style: TextStyle(color: Colors.white),),
-          icon: Icon(Icons.settings, color: Colors.white)
+          icon: Icon(Icons.reorder, color: Colors.white)
       ),);
       return navyList;
     }

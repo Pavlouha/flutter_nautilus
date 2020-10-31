@@ -9,15 +9,11 @@ part of 'gun_in_order.dart';
 GunInOrder _$GunInOrderFromJson(Map<String, dynamic> json) {
   return GunInOrder(
     json['gunInOrderId'] as int,
-    json['gun'] == null
-        ? null
-        : Gun.fromJson(json['gun'] as Map<String, dynamic>),
+    Gun(json['gun']['gunId'] as int, json['gun']['vendor_code'] as String, json['gun']['price'] as int),
     json['quantity'] as int,
     json['sum'] as int,
     json['orderId'] as int,
-    json['gunState'] == null
-        ? null
-        : GunState.fromJson(json['gunState'] as Map<String, dynamic>),
+    GunState(json['gunState']['gunStateId'] as int, json['gunState']['title'] as String),
   );
 }
 

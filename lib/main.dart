@@ -7,7 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Barbarian.init();
 
-  //TODO попробовать сделать условия для уведомлений
+  //TODO попробовать сделать условия для уведомлений (потом)
 
   Airship.setUserNotificationsEnabled(true);
   runApp(MyApp());
