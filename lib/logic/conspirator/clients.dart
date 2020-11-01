@@ -3,35 +3,35 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_nautilus/connectionString.dart';
+import 'package:flutter_nautilus/models/customer.dart';
 import 'package:flutter_nautilus/models/role.dart';
-import 'package:flutter_nautilus/models/user_without_token.dart';
 
-///Получаем список пользователей
+//TODO сделать клиентов
 
-Future<List<UserWithoutToken>> getUsers(String token) async {
+///Получаем список кастомеров
+Future<List<Customer>> getClients(String token) async {
 
   Dio dio = new Dio();
 
   var response = await dio.get(connection + "user", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
-  return parseUsers(response);
+  return parseClients(response);
 }
 
-List<UserWithoutToken> parseUsers(Response response) {
+List<Customer> parseClients(Response response) {
   if (response.statusCode==200) {
-   // debugPrint(response.data.toString());
+    // debugPrint(response.data.toString());
     var data = response.data as List;
-    List<UserWithoutToken> users = data.map((e) => UserWithoutToken.fromJson(e)).toList();
-    return users;
+    List<Customer> clients = data.map((e) => Customer.fromJson(e)).toList();
+    return clients;
   } else {
-    throw Exception('Failed to load users');
+    throw Exception('Failed to load customers');
   }
 }
 
-///Удаляем юзера
-
-Future<bool> deleteUser(String token, int id) async {
+///Удаляем кастомера
+Future<bool> deleteClient(String token, int id) async {
 
   Dio dio = new Dio();
 
@@ -52,9 +52,8 @@ Future<bool> deleteUser(String token, int id) async {
 
 }
 
-///Добавляем нового пользователя
-
-Future<bool> insertUser(String login, String password, List<Role> roles, String roleTitle, String username, String cell, String token) async {
+///Добавляем нового клиента
+Future<bool> insertClient( String token) async {
 
   Dio dio = new Dio();
 

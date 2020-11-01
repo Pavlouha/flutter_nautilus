@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nautilus/logic/captain/orders.dart';
+import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/orders.dart';
 import 'package:flutter_nautilus/models/order.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
@@ -106,7 +106,10 @@ class _OrdersPageState extends State<OrdersPage> {
           DialogButton(
             color: Colors.green,
             onPressed:() {
-
+              changeOrderReviewState(_user.token, specific.orderId, 1);
+              Navigator.pop(context);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
+              (route) => false);
             },
             child: Text( 'Done',
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -115,7 +118,10 @@ class _OrdersPageState extends State<OrdersPage> {
           DialogButton(
             color: Colors.red,
             onPressed:() {
-
+              changeOrderReviewState(_user.token, specific.orderId, 2);
+              Navigator.pop(context);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
+                      (route) => false);
             },
             child: Text( 'Cancel',
               style: TextStyle(color: Colors.white, fontSize: 20),

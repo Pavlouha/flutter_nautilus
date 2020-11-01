@@ -29,18 +29,50 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
     }
     break;
 
+    ///МЕНЮ КОНСПИРАТОРА
     case 1: {
-
+      navyList.add(BottomNavyBarItem(
+        activeColor: Colors.black12,
+        title: Text('Orders',  style: TextStyle(color: Colors.white),),
+        icon: Icon(Icons.reorder, color: Colors.white)
+    ),);
+      navyList.add( BottomNavyBarItem(
+        activeColor: Colors.black12,
+        title: Text('Clients', style: TextStyle(color: Colors.white),),
+        icon: Icon(Icons.add_circle, color: Colors.white)
+      ),);
       return navyList;
     }
     break;
 
+    ///МЕНЮ КЛАДОВЩИКА
     case 2: {
+      navyList.add(BottomNavyBarItem(
+          activeColor: Colors.yellowAccent,
+          title: Text('Guns-Order',  style: TextStyle(color: Colors.white),),
+          icon: Icon(Icons.reorder, color: Colors.white)
+      ),);
+      navyList.add( BottomNavyBarItem(
+          activeColor: Colors.yellowAccent,
+          title: Text('All', style: TextStyle(color: Colors.white),),
+          icon: Icon(Icons.add_circle, color: Colors.white)
+      ),);
       return navyList;
     }
     break;
 
+    ///МЕНЮ ОРУЖЕЙНИКА
     case 3: {
+      navyList.add(BottomNavyBarItem(
+          activeColor: Colors.indigo,
+          title: Text('Guns-Order',  style: TextStyle(color: Colors.white),),
+          icon: Icon(Icons.reorder, color: Colors.white)
+      ),);
+      navyList.add( BottomNavyBarItem(
+          activeColor: Colors.indigo,
+          title: Text('All', style: TextStyle(color: Colors.white),),
+          icon: Icon(Icons.add_circle, color: Colors.white)
+      ),);
       return navyList;
     }
     break;

@@ -3,6 +3,7 @@ import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/pages/captain/user_s
 import 'package:flutter_nautilus/models/user.dart';
 import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/pages/captain/authentications.dart';
 import 'package:flutter_nautilus/pages/captain/orders_screen.dart';
+import 'package:flutter_nautilus/pages/conspirator/conspirator_order_screen.dart';
 
 List<Widget> primaryMenu(User user, BuildContext context) {
 
@@ -15,10 +16,8 @@ List<Widget> primaryMenu(User user, BuildContext context) {
   captainList.add(OrdersPage(user));
 
   List<Widget> conspiratorList = [];
-  conspiratorList.add(Container(color: Colors.red));
+  conspiratorList.add(OrdersConspiratorPage(user));
   conspiratorList.add(Container(color: Colors.white));
-  conspiratorList.add(Container(color: Colors.green));
-  conspiratorList.add(Container(color: Colors.teal));
 
   List<Widget> gunsmithList = [];
   gunsmithList.add(Container(color: Colors.redAccent));
