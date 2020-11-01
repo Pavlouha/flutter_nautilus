@@ -16,9 +16,11 @@ Future<List<GunInOrder>> getGunsInOrder(String token, int orderId) async {
     "id": orderId,
   });
 
-  var response = await dio.get(connection + "guninorder", data: formData,  options: Options(headers: {
-    HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
+  var response = await dio.post(connection + "guninorder", data: formData,  options: Options(headers: {
+    "Authorization" : "Bearer $token"
   }),);
+
+  debugPrint(response.data.toString());
 
   if (response.statusCode==200) {
     var data = response.data as List;
