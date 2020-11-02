@@ -103,30 +103,20 @@ Future<bool> changeOrderState(String token, int orderId, List<OrderState> orderS
 
 }
 
-//TODO сделать добавление заказа
+//TODO сделать добавление пушек к заказу
 
 ///Добавляем новый заказ
-Future<bool> insertOrder(String login, String password, List<Role> roles, String roleTitle, String username, String cell, String token) async {
+Future<bool> insertOrder(int customerId, String commentary, int userId, int gunInOrderId, String token) async {
 
   Dio dio = new Dio();
 
-  int roleId;
-
-  roles.forEach((element) {
-    if (element.title == roleTitle) {
-      roleId = element.roleId;
-    }
-  });
-
   FormData formData = FormData.fromMap({
-    "login": login,
-    "password" : password,
-    "roleId" : roleId.toString(),
-    "username" : username,
-    "cell" : cell
+    "customerId": customerId.toString(),
+    "commentary" : commentary,
+    "userId" : userId.toString(),
   });
 
-  var response = await dio.post(connection + "user", data: formData, options: Options(headers: {
+  var response = await dio.post(connection + "order", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -134,7 +124,7 @@ Future<bool> insertOrder(String login, String password, List<Role> roles, String
     var data = response.data;
     return data;
   } else {
-    throw Exception('Failed to add user');
+    throw Exception('Failed to add order');
   }
 
 }

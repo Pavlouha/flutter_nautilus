@@ -141,7 +141,7 @@ class _UsersPageState extends State<UsersPage> {
             TextField(
               controller: _loginController,
               decoration: InputDecoration(
-                icon: Icon(Icons.account_circle),
+                icon: Icon(Icons.login),
                 labelText: 'Login',
               ),
             ),
@@ -177,7 +177,7 @@ class _UsersPageState extends State<UsersPage> {
             TextField(
               controller: _cellController,
               decoration: InputDecoration(
-                icon: Icon(Icons.lock),
+                icon: Icon(Icons.not_listed_location_rounded),
                 labelText: 'Cell',
               ),
             ),
@@ -215,5 +215,14 @@ class _UsersPageState extends State<UsersPage> {
         _mySelection = _roles[0].title;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    _loginController.dispose();
+    _cellController.dispose();
+    super.dispose();
   }
 }

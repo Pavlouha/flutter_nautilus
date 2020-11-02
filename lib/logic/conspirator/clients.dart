@@ -4,16 +4,13 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_nautilus/connectionString.dart';
 import 'package:flutter_nautilus/models/customer.dart';
-import 'package:flutter_nautilus/models/role.dart';
-
-//TODO сделать клиентов
 
 ///Получаем список кастомеров
 Future<List<Customer>> getClients(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "user", options: Options(headers: {
+  var response = await dio.get(connection + "customer", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
   return parseClients(response);
@@ -39,7 +36,7 @@ Future<bool> deleteClient(String token, int id) async {
     "id": id,
   };
 
-  var response = await dio.delete(connection + "user", data: jsonEncode(formData), options: Options(headers: {
+  var response = await dio.delete(connection + "customer", data: jsonEncode(formData), options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
 
@@ -47,33 +44,24 @@ Future<bool> deleteClient(String token, int id) async {
     var data = response.data;
     return data;
   } else {
-    throw Exception('Failed to delete user ');
+    throw Exception('Failed to delete customer');
   }
 
 }
 
-///Добавляем нового клиента
-Future<bool> insertClient( String token) async {
+///Добавляем нового кастомера
+Future<bool> insertClient(String client, String coords, String connect, String token) async {
 
   Dio dio = new Dio();
 
-  int roleId;
-
-  roles.forEach((element) {
-    if (element.title == roleTitle) {
-      roleId = element.roleId;
-    }
-  });
-
   FormData formData = FormData.fromMap({
-    "login": login,
-    "password" : password,
-    "roleId" : roleId.toString(),
-    "username" : username,
-    "cell" : cell
+    "client": client,
+    "coords" : coords,
+    "connection" : connect,
+
   });
 
-  var response = await dio.post(connection + "user", data: formData, options: Options(headers: {
+  var response = await dio.post(connection + "customer", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -81,7 +69,7 @@ Future<bool> insertClient( String token) async {
     var data = response.data;
     return data;
   } else {
-    throw Exception('Failed to add user');
+    throw Exception('Failed to add customer');
   }
 
 }

@@ -19,6 +19,8 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
   final User _user;
   _OrdersConspiratorPageState(this._user);
 
+  final _commentController = TextEditingController();
+
   List<OrderState> _states = List();
 
   String _mySelection;
@@ -32,6 +34,9 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
             IconButton(icon: Icon(Icons.update), color: Colors.white, onPressed: () =>
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
                         (route) => false)),
+            IconButton(icon: Icon(Icons.add_circle), color: Colors.white, onPressed: () {
+
+            }),
           ],
         ),
         body: FutureBuilder<List<Order>>(
@@ -96,7 +101,6 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
             Text("How to connect : ${specific.customer.connection}"),
             Text("Commentary : ${specific.commentary}"),
             Text("Created by : ${specific.userName}"),
-            Text("Commentary : ${specific.commentary}"),
             Text("State : ${specific.orderState.title}"),
             Text("Review status : ${specific.orderReviewState.title}"),
             DropdownButton(items:
@@ -141,6 +145,37 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
         ]).show();
   }
 
+  /// Alert Dialog with Order Inserting
+  _onAlertWithOrderInsertingPressed(context) {
+    Alert(
+        context: context,
+        title: 'New Order',
+        content: Column(
+          children: <Widget>[
+            TextField(
+              controller: _commentController,
+              decoration: InputDecoration(
+                icon: Icon(Icons.login),
+                labelText: 'Commentary',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed:() {
+              if (_commentController.text!='') {
+               //ПЕРЕХОД НА СТРАНИЦУ ДОБАВЛЕНИЯ ВОЛЫН
+
+              }
+            },
+            child: Text( 'Next',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          ),
+        ]).show();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -153,5 +188,11 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
         _mySelection = _states[0].title;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _commentController.dispose();
+    super.dispose();
   }
 }
