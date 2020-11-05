@@ -12,11 +12,11 @@ Future<List<Gun>> getGuns(String token) async {
     "Authorization" : "Bearer $token"
   }),);
 
-  debugPrint(response.data.toString());
-
   if (response.statusCode==200) {
+    //  debugPrint(response.data.toString());
     var data = response.data as List;
     List<Gun> guns = data.map((e) => Gun.fromJson(e)).toList();
+   // debugPrint(guns[0].vendorCode);
     return guns;
   } else {
     throw Exception('Failed to load guns');

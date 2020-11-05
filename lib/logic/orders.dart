@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_nautilus/connectionString.dart';
+import 'package:flutter_nautilus/models/gun_in_order.dart';
 import 'package:flutter_nautilus/models/order.dart';
 import 'package:flutter_nautilus/models/order_state.dart';
+import 'package:flutter_nautilus/models/user.dart';
 
 ///Получаем список заказов - КАПИТАН
 
@@ -103,26 +106,43 @@ Future<bool> changeOrderState(String token, int orderId, List<OrderState> orderS
 
 }
 
-//TODO сделать добавление пушек к заказу
-
 ///Добавляем новый заказ
-Future<bool> insertOrder(int customerId, String commentary, int userId, int gunInOrderId, String token) async {
+Future<bool> insertOrder(int customerId, String commentary, List<GunInOrder> guns, User user) async {
 
   Dio dio = new Dio();
+
+  debugPrint(customerId.toString());
+  debugPrint(commentary);
+  debugPrint(user.userId.toString());
 
   FormData formData = FormData.fromMap({
     "customerId": customerId.toString(),
     "commentary" : commentary,
-    "userId" : userId.toString(),
+    "userId" : user.userId.toString(),
   });
 
   var response = await dio.post(connection + "order", data: formData, options: Options(headers: {
-    "Authorization" : "Bearer $token"
+    "Authorization" : "Bearer ${user.token}"
   }),);
 
   if (response.statusCode==200) {
     var data = response.data;
-    return data;
+
+    ///Отправляем список пушек в новом ордере
+    guns.forEach((element) async {
+
+      FormData gunFormData = FormData.fromMap({
+        "gunId": element.gun.gunId,
+        "quantity": element.quantity,
+        "sum": element.sum,
+        "orderId": data,
+      });
+
+      var response = await dio.post(connection + "newguninorder", data: gunFormData,  options: Options(headers: {
+        "Authorization" : "Bearer ${user.token}"
+      }),);
+    });
+    return true;
   } else {
     throw Exception('Failed to add order');
   }

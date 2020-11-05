@@ -35,19 +35,18 @@ Future<bool> deleteUser(String token, int id) async {
 
   Dio dio = new Dio();
 
-  var formData = {
+  FormData formData = FormData.fromMap({
     "id": id,
-  };
+  });
 
-  var response = await dio.delete(connection + "user", data: jsonEncode(formData), options: Options(headers: {
-    HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
+  var response = await dio.delete(connection + "user", data: formData, options: Options(headers: {"Authorization" : "Bearer $token"
   }),);
 
   if (response.statusCode==200) {
     var data = response.data;
     return data;
   } else {
-    throw Exception('Failed to delete user ');
+    throw Exception('Failed to delete user');
   }
 
 }

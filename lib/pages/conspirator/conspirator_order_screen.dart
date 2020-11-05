@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/orders.dart';
+
 import 'package:flutter_nautilus/logic/conspirator/order_state.dart';
+import 'package:flutter_nautilus/logic/orders.dart';
+import 'package:flutter_nautilus/models/gun_in_order.dart';
 import 'package:flutter_nautilus/models/order.dart';
 import 'package:flutter_nautilus/models/order_state.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+import 'gun_add_screen.dart';
 
 class OrdersConspiratorPage extends StatefulWidget {
   final User _user;
@@ -23,6 +27,8 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
 
   List<OrderState> _states = List();
 
+  List<GunInOrder> gunList = [];
+
   String _mySelection;
 
   @override
@@ -35,7 +41,7 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
                         (route) => false)),
             IconButton(icon: Icon(Icons.add_circle), color: Colors.white, onPressed: () {
-
+              _onAlertWithOrderInsertingPressed(context);
             }),
           ],
         ),
@@ -121,7 +127,7 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
         ),
         buttons: [
           DialogButton(
-            onPressed:() =>Navigator.push(context,
+            onPressed:() => Navigator.push(context,
               MaterialPageRoute(builder: (context) => GunInOrderPage(_user, specific.orderId)),
             ),
             child: Text( 'Guns',
@@ -164,9 +170,10 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
         buttons: [
           DialogButton(
             onPressed:() {
-              if (_commentController.text!='') {
-               //ПЕРЕХОД НА СТРАНИЦУ ДОБАВЛЕНИЯ ВОЛЫН
-
+              if (_commentController.text!='' && _commentController.text!=null) {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => GunSelectPage(_user, _commentController.text, gunList)),
+                );
               }
             },
             child: Text( 'Next',

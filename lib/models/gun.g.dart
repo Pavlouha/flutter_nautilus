@@ -9,13 +9,13 @@ part of 'gun.dart';
 Gun _$GunFromJson(Map<String, dynamic> json) {
   return Gun(
     json['gunId'] as int,
-    json['vendorCode'] as String,
+    json['vendor_code'] as String,
     json['price'] as int,
   );
 }
 
 Map<String, dynamic> _$GunToJson(Gun instance) => <String, dynamic>{
       'gunId': instance.gunId,
-      'vendorCode': instance.vendorCode,
+      'vendor_code': instance.vendorCode,
       'price': instance.price,
     };
