@@ -30,7 +30,6 @@ List<UserWithoutToken> parseUsers(Response response) {
 }
 
 ///Удаляем юзера
-
 Future<bool> deleteUser(String token, int id) async {
 
   Dio dio = new Dio();

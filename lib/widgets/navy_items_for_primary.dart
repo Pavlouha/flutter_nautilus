@@ -49,12 +49,12 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
     case 2: {
       navyList.add(BottomNavyBarItem(
           activeColor: Colors.yellowAccent,
-          title: Text('Guns-Order',  style: TextStyle(color: Colors.white),),
+          title: Text('Orders',  style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.reorder, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
           activeColor: Colors.yellowAccent,
-          title: Text('All', style: TextStyle(color: Colors.white),),
+          title: Text('Guns', style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.add_circle, color: Colors.white)
       ),);
       return navyList;
