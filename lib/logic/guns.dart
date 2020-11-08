@@ -7,7 +7,7 @@ Future<List<Gun>> getGuns(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "gun",  options: Options(headers: {
+  var response = await dio.get(connectionString() + "gun",  options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -32,7 +32,7 @@ Future<bool> insertGun(String token, String vendorCode, String price) async {
     "price" : price,
   });
 
-  var response = await dio.post(connection + "gun", data: formData, options: Options(headers: {
+  var response = await dio.post(connectionString() + "gun", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -53,7 +53,7 @@ Future<bool> deleteGun(String token, int gunId) async {
     "id": gunId,
   });
 
-  var response = await dio.delete(connection + "gun", data: formData, options: Options(headers: {
+  var response = await dio.delete(connectionString() + "gun", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 

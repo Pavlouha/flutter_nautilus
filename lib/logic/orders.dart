@@ -14,7 +14,7 @@ Future<List<Order>> getOrders(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "order", options: Options(headers: {
+  var response = await dio.get(connectionString() + "order", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
 
@@ -36,7 +36,7 @@ Future<List<Order>> getNotCancelledOrders(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "ordernotcancelled", options: Options(headers: {
+  var response = await dio.get(connectionString() + "ordernotcancelled", options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -62,7 +62,7 @@ Future<bool> changeOrderReviewState(String token, int orderId, int orderReviewSt
     "orderReviewStateId": orderReviewStateId,
   });
 
-  var response = await dio.patch(connection + "revieworder", data: formData, options: Options(headers: {
+  var response = await dio.patch(connectionString() + "revieworder", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -93,7 +93,7 @@ Future<bool> changeOrderState(String token, int orderId, List<OrderState> orderS
     "stateId": orderStateId,
   });
 
-  var response = await dio.patch(connection + "order", data: formData, options: Options(headers: {
+  var response = await dio.patch(connectionString() + "order", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -121,7 +121,7 @@ Future<bool> insertOrder(int customerId, String commentary, List<GunInOrder> gun
     "userId" : user.userId.toString(),
   });
 
-  var response = await dio.post(connection + "order", data: formData, options: Options(headers: {
+  var response = await dio.post(connectionString() + "order", data: formData, options: Options(headers: {
     "Authorization" : "Bearer ${user.token}"
   }),);
 
@@ -138,7 +138,7 @@ Future<bool> insertOrder(int customerId, String commentary, List<GunInOrder> gun
         "orderId": data,
       });
 
-      var response = await dio.post(connection + "newguninorder", data: gunFormData,  options: Options(headers: {
+      var response = await dio.post(connectionString() + "newguninorder", data: gunFormData,  options: Options(headers: {
         "Authorization" : "Bearer ${user.token}"
       }),);
     });

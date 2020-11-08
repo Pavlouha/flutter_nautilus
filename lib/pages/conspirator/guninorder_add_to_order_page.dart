@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nautilus/models/gun.dart';
 import 'package:flutter_nautilus/models/gun_in_order.dart';
 import 'package:flutter_nautilus/models/user.dart';
 

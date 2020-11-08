@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_nautilus/models/role.dart';
 
-import '../../connectionString.dart';
+import 'package:flutter_nautilus/connectionString.dart';
 
 ///Получаем список ролей
 
@@ -12,7 +12,7 @@ Future<List<Role>> getRoles(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "role", options: Options(headers: {
+  var response = await dio.get(connectionString() + "role", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
   return parseRoles(response);

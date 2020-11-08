@@ -10,7 +10,7 @@ Future<List<Customer>> getClients(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "customer", options: Options(headers: {
+  var response = await dio.get(connectionString() + "customer", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
   return parseClients(response);
@@ -36,7 +36,7 @@ Future<bool> deleteClient(String token, int id) async {
     "id": id,
   };
 
-  var response = await dio.delete(connection + "customer", data: jsonEncode(formData), options: Options(headers: {
+  var response = await dio.delete(connectionString() + "customer", data: jsonEncode(formData), options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
 
@@ -61,7 +61,7 @@ Future<bool> insertClient(String client, String coords, String connect, String t
 
   });
 
-  var response = await dio.post(connection + "customer", data: formData, options: Options(headers: {
+  var response = await dio.post(connectionString() + "customer", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 

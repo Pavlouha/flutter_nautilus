@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/orders.dart';
+import 'package:flutter_nautilus/logic/orders.dart';
+
 import 'package:flutter_nautilus/models/order.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';

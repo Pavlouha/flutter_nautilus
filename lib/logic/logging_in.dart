@@ -40,7 +40,7 @@ Future<User> authorization(String login, String password) async {
       "name": login,
       "password": password,
     };
-    response = await dio.post(connection + "generatetoken", data: jsonEncode(formData), options: Options(headers: {
+    response = await dio.post(connectionString() + "generatetoken", data: jsonEncode(formData), options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json",
     }),);
 

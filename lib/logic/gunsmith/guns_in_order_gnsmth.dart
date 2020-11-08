@@ -1,15 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_nautilus/connectionString.dart';
 import 'package:flutter_nautilus/models/gun_in_order.dart';
 import 'package:flutter_nautilus/models/gun_state.dart';
+import 'package:flutter_nautilus/connectionString.dart';
 
 ///Получаем список всех ганинордеров
 Future<List<GunInOrder>> getAllGunsInOrder(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "guninorder", options: Options(headers: {
+  var response = await dio.get(connectionString() + "guninorder", options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 
@@ -42,7 +41,7 @@ Future<bool> changeGunState(String token, int orderId, List<GunState> gunStates,
     "stateId": gunStateId,
   });
 
-  var response = await dio.patch(connection + "guninorder", data: formData, options: Options(headers: {
+  var response = await dio.patch(connectionString() + "guninorder", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 

@@ -10,7 +10,7 @@ Future<List<AuthClass>> authorizationList(String token) async {
 
   Dio dio = new Dio();
 
-   var response = await dio.get(connection + "auths", options: Options(headers: {
+   var response = await dio.get(connectionString() + "auths", options: Options(headers: {
       HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
     }),);
 
@@ -33,7 +33,7 @@ Future<bool> authorizationDelete(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.delete(connection + "auths", options: Options(headers: {
+  var response = await dio.delete(connectionString() + "auths", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
 

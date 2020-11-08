@@ -12,7 +12,7 @@ Future<List<GunInOrder>> getGunsInOrder(String token, int orderId) async {
     "id": orderId,
   });
 
-  var response = await dio.post(connection + "guninorder", data: formData,  options: Options(headers: {
+  var response = await dio.post(connectionString() + "guninorder", data: formData,  options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 

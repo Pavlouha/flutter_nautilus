@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/captain/auths.dart';
+import 'package:flutter_nautilus/logic/captain/auths.dart';
+
 import 'package:flutter_nautilus/models/auth_class.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -12,7 +11,7 @@ Future<List<UserWithoutToken>> getUsers(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "user", options: Options(headers: {
+  var response = await dio.get(connectionString() + "user", options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
   return parseUsers(response);
@@ -38,7 +37,7 @@ Future<bool> deleteUser(String token, int id) async {
     "id": id,
   });
 
-  var response = await dio.delete(connection + "user", data: formData, options: Options(headers: {"Authorization" : "Bearer $token"
+  var response = await dio.delete(connectionString() + "user", data: formData, options: Options(headers: {"Authorization" : "Bearer $token"
   }),);
 
   if (response.statusCode==200) {
@@ -72,7 +71,7 @@ Future<bool> insertUser(String login, String password, List<Role> roles, String 
     "cell" : cell
   });
 
-  var response = await dio.post(connection + "user", data: formData, options: Options(headers: {
+  var response = await dio.post(connectionString() + "user", data: formData, options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
 

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_nautilus/models/gun_state.dart';
 
-import '../../connectionString.dart';
+import 'package:flutter_nautilus/connectionString.dart';
 
 ///Получаем список стейтов волын
 
@@ -9,7 +9,7 @@ Future<List<GunState>> getGunStates(String token) async {
 
   Dio dio = new Dio();
 
-  var response = await dio.get(connection + "gunstate", options: Options(headers: {
+  var response = await dio.get(connectionString() + "gunstate", options: Options(headers: {
     "Authorization" : "Bearer $token"
   }),);
   return parseGunStates(response);
