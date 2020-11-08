@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_nautilus/models/order_state.dart';
 
 import '../../connectionString.dart';

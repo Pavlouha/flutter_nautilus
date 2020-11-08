@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nautilus/logic/conspirator/guns.dart';
+import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/guns.dart';
 import 'package:flutter_nautilus/models/gun.dart';
 import 'package:flutter_nautilus/models/gun_in_order.dart';
 import 'package:flutter_nautilus/models/gun_state.dart';
@@ -84,6 +84,7 @@ class _GunSelectPageState extends State<GunSelectPage> {
             Text(specific.vendorCode),
             Text(specific.price.toString()),
             TextField(
+              keyboardType: TextInputType.number,
               controller: _quantityController,
               decoration: InputDecoration(
                 icon: Icon(Icons.account_balance_wallet_sharp),

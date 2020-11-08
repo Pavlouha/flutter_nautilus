@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/pages/captain/user_screen.dart';
+
 import 'package:flutter_nautilus/models/user.dart';
-import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/pages/captain/authentications.dart';
+import 'package:flutter_nautilus/pages/captain/authentications.dart';
+
 import 'package:flutter_nautilus/pages/captain/orders_screen.dart';
+import 'package:flutter_nautilus/pages/captain/user_screen.dart';
 import 'package:flutter_nautilus/pages/conspirator/client_screen.dart';
 import 'package:flutter_nautilus/pages/conspirator/conspirator_order_screen.dart';
+import 'package:flutter_nautilus/pages/gunsmith/gun_in_order_gnsmth_screen.dart';
+import 'package:flutter_nautilus/pages/gunsmith/weapons.dart';
 import 'package:flutter_nautilus/pages/storekeeper/guns_storekeeper.dart';
 import 'package:flutter_nautilus/pages/storekeeper/storekeeper_order_screen.dart';
 
@@ -27,11 +31,8 @@ List<Widget> primaryMenu(User user, BuildContext context) {
   storekeeperList.add(GunsPage(user));
 
   List<Widget> gunsmithList = [];
-  gunsmithList.add(Container(color: Colors.black12));
-  gunsmithList.add(Container(color: Colors.brown));
-  gunsmithList.add(Container(color: Colors.yellow));
-  gunsmithList.add(Container(color: Colors.blue));
-  gunsmithList.add(Container(color: Colors.pink));
+  gunsmithList.add(WeaponsPage(user));
+  gunsmithList.add(GunInOrderGunsmithPage(user));
 
   switch (user.role.roleId) {
     case 0: {

@@ -55,7 +55,7 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
       navyList.add( BottomNavyBarItem(
           activeColor: Colors.yellowAccent,
           title: Text('Guns', style: TextStyle(color: Colors.white),),
-          icon: Icon(Icons.add_circle, color: Colors.white)
+          icon: Icon(Icons.multiline_chart, color: Colors.white)
       ),);
       return navyList;
     }
@@ -65,13 +65,13 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
     case 3: {
       navyList.add(BottomNavyBarItem(
           activeColor: Colors.indigo,
-          title: Text('Guns-Order',  style: TextStyle(color: Colors.white),),
+          title: Text('GunsInOrder',  style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.reorder, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
           activeColor: Colors.indigo,
-          title: Text('All', style: TextStyle(color: Colors.white),),
-          icon: Icon(Icons.add_circle, color: Colors.white)
+          title: Text('All Guns', style: TextStyle(color: Colors.white),),
+          icon: Icon(Icons.build, color: Colors.white)
       ),);
       return navyList;
     }

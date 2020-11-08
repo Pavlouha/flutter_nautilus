@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nautilus/logic/conspirator/guns.dart';
+import 'file:///C:/Users/pav5a/Desktop/flutter_nautilus/lib/logic/guns.dart';
 import 'package:flutter_nautilus/models/gun.dart';
 
 import 'package:flutter_nautilus/models/user.dart';

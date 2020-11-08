@@ -39,7 +39,7 @@ class _OrdersPageState extends State<OrdersPage> {
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         return FlatButton(
-                          onPressed: () => _onAlertWithSelectedOrderPressed(context, snapshot.data[index]),
+                          onPressed: () => _onAlertWithSelectedOrderPressed(context, snapshot.data[snapshot.data.length - 1 -  index]),
                           child: Row(
                             //  crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

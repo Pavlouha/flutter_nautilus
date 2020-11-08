@@ -57,7 +57,7 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
                     return FlatButton(
-                      onPressed: () => _onAlertWithSelectedOrderPressed(context, snapshot.data[index]),
+                      onPressed: () => _onAlertWithSelectedOrderPressed(context, snapshot.data[snapshot.data.length - 1 -  index]),
                       child: Row(
                         //  crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -136,7 +136,7 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
           ),
 
           DialogButton(
-            color: Colors.red,
+            color: Colors.green,
             onPressed:() {
               debugPrint(_mySelection);
               changeOrderState(_user.token, specific.orderId, _states, _mySelection);
