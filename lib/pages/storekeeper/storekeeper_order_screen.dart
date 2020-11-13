@@ -9,6 +9,8 @@ import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
+import 'gun_in_order_storekeeper.dart';
+
 class OrdersStorekeeperPage extends StatefulWidget {
   final User _user;
   OrdersStorekeeperPage(this._user);
@@ -28,7 +30,7 @@ class _OrdersStorekeeperPageState extends State<OrdersStorekeeperPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(backgroundColor: Colors.indigo, elevation: 0,
-          title: Text('Order#/Client/State', style: TextStyle(color: Colors.white)),
+          title: Text('Order#/Client/User', style: TextStyle(color: Colors.white)),
           actions: [
             IconButton(icon: Icon(Icons.update), color: Colors.white, onPressed: () =>
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
@@ -47,7 +49,7 @@ class _OrdersStorekeeperPageState extends State<OrdersStorekeeperPage> {
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
                     return FlatButton(
-                      onPressed: () => _onAlertWithSelectedOrderPressed(context, snapshot.data[index]),
+                      onPressed: () => _onAlertWithSelectedOrderPressed(context, snapshot.data[snapshot.data.length - 1 -  index]),
                       child: Row(
                         //  crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -118,7 +120,7 @@ class _OrdersStorekeeperPageState extends State<OrdersStorekeeperPage> {
         buttons: [
           DialogButton(
             onPressed:() => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => GunInOrderPage(_user, specific.orderId)),
+              MaterialPageRoute(builder: (context) => GunInOrderStorekeeperPage(_user, specific.orderId)),
             ),
             child: Text( 'Guns',
               style: TextStyle(color: Colors.white, fontSize: 20),
