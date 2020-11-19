@@ -124,7 +124,7 @@ class _OrdersPageState extends State<OrdersPage> {
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
                       (route) => false);
             },
-            child: Text( 'Cancel',
+            child: Text( 'Deny',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           )
