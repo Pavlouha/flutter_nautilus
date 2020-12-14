@@ -39,21 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: RaisedButton(
                     child: Text('Log in', style: TextStyle(fontSize: 20)),
                     onPressed: () {
-                      if (ifLoginAndPassExist() == true) {
-                       String login = getLoginSF();
-                       String password = getPasswordSF();
-                       User user;
-                       authorization(login, password).then((value) {
-                           user = new User(value.token, value.userId, value.login, value.username,
-                               value.password, Role(value.role.roleId, value.role.title), value.cell);
-                           Navigator.pushAndRemoveUntil(context,
-                               MaterialPageRoute(builder: (context) => PrimaryPage(user,0)),
-                                   (route) => false);
-                         }
-                       );
-                      } else {
                         _onAlertWithCustomContentPressed(context);
-                      }
                     }
                   ),
                 )
