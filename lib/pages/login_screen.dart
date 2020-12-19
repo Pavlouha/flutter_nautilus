@@ -58,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
         content: Column(
           children: <Widget>[
             TextField(
+              key: Key('Username'),
               controller: loginController,
               decoration: InputDecoration(
                 icon: Icon(Icons.account_circle),
@@ -65,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             TextField(
+              key: Key('Password'),
               controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(

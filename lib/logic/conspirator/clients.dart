@@ -32,11 +32,11 @@ Future<bool> deleteClient(String token, int id) async {
 
   Dio dio = new Dio();
 
-  var formData = {
+  FormData formData = FormData.fromMap({
     "id": id,
-  };
+  });
 
-  var response = await dio.delete(connectionString() + "customer", data: jsonEncode(formData), options: Options(headers: {
+  var response = await dio.delete(connectionString() + "customer", data: formData, options: Options(headers: {
     HttpHeaders.contentTypeHeader: "application/json", "Authorization" : "Bearer $token"
   }),);
 

@@ -21,6 +21,7 @@ class _OrdersPageState extends State<OrdersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key:Key('Orders'),
         appBar: AppBar(backgroundColor: Colors.indigo, elevation: 0,
           title: Text('Order#/Client/Consp', style: TextStyle(color: Colors.white)),
           actions: [

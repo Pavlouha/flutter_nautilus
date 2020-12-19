@@ -65,12 +65,12 @@ List<BottomNavyBarItem> navyItemsForPrimaryPage(User user) {
     case 3: {
       navyList.add(BottomNavyBarItem(
           activeColor: Colors.indigo,
-          title: Text('GunsInOrder',  style: TextStyle(color: Colors.white),),
+          title: Text('Guns',  style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.reorder, color: Colors.white)
       ),);
       navyList.add( BottomNavyBarItem(
           activeColor: Colors.indigo,
-          title: Text('All Guns', style: TextStyle(color: Colors.white),),
+          title: Text('InOrder', style: TextStyle(color: Colors.white),),
           icon: Icon(Icons.build, color: Colors.white)
       ),);
       return navyList;

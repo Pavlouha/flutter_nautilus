@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_nautilus/pages/login_screen.dart';
 import 'package:airship_flutter/airship_flutter.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Barbarian.init();
 
   //TODO попробовать сделать условия для уведомлений (потом)
 

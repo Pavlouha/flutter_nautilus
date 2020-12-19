@@ -30,13 +30,14 @@ class _UsersPageState extends State<UsersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key:Key('Users'),
         appBar: AppBar(backgroundColor: Colors.brown, elevation: 0,
           title: Text('Name/Role/Login', style: TextStyle(color: Colors.white)),
           actions: [
             IconButton(icon: Icon(Icons.update), color: Colors.white, onPressed: () =>
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
                         (route) => false)),
-            IconButton(icon: Icon(Icons.add_circle), color: Colors.white,
+            IconButton(key: Key("Add_user"), icon: Icon(Icons.add_circle), color: Colors.white,
                 onPressed: () {
                   _onAlertWithUserInsertingPressed(context);
                 },
