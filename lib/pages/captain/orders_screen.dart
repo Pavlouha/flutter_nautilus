@@ -5,6 +5,7 @@ import 'package:flutter_nautilus/models/order.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -67,7 +68,8 @@ class _OrdersPageState extends State<OrdersPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.indigo,
-              child: Text("${snapshot.error}"),
+             // child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -98,7 +100,7 @@ class _OrdersPageState extends State<OrdersPage> {
         ),
         buttons: [
           DialogButton(
-            onPressed:() =>Navigator.push(context,
+            onPressed:() => Navigator.push(context,
         MaterialPageRoute(builder: (context) => GunInOrderPage(_user, specific.orderId)),
             ),
             child: Text( 'Guns',
@@ -108,10 +110,15 @@ class _OrdersPageState extends State<OrdersPage> {
           DialogButton(
             color: Colors.green,
             onPressed:() {
-              changeOrderReviewState(_user.token, specific.orderId, 1);
-              Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
-              (route) => false);
+              changeOrderReviewState(_user.token, specific.orderId, 1).then((value) {
+                if (value != null) {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
+                          (route) => false);
+                } else {
+                  serverError(context);
+                }
+              });
             },
             child: Text( 'Done',
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -120,10 +127,15 @@ class _OrdersPageState extends State<OrdersPage> {
           DialogButton(
             color: Colors.red,
             onPressed:() {
-              changeOrderReviewState(_user.token, specific.orderId, 2);
-              Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
-                      (route) => false);
+              changeOrderReviewState(_user.token, specific.orderId, 2).then((value) {
+                if (value != null) {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,2)),
+                          (route) => false);
+                } else {
+                 serverError(context);
+                }
+              });
             },
             child: Text( 'Deny',
               style: TextStyle(color: Colors.white, fontSize: 20),

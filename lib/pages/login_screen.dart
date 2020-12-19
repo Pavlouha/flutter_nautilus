@@ -1,9 +1,13 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_nautilus/logic/check_internet_connection.dart';
 import 'package:flutter_nautilus/logic/logging_in.dart';
 import 'package:flutter_nautilus/models/role.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/alert_style.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   var alertTitle = false;
+
+  var noInternet = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,11 @@ class _LoginPageState extends State<LoginPage> {
                   child: RaisedButton(
                     child: Text('Log in', style: TextStyle(fontSize: 20)),
                     onPressed: () {
+                      if (noInternet) {
+                        _onAlertWithNoInternet(context);
+                      } else{
                         _onAlertWithCustomContentPressed(context);
+                      }
                     }
                   ),
                 )
@@ -82,7 +92,9 @@ class _LoginPageState extends State<LoginPage> {
               User user;
               authorization(loginController.text, passwordController.text).then((value) {
                 if (value == null) {
-
+                  click();
+                  Navigator.pop(context);
+                  _onAlertWithCustomContentPressed(context);
                 } else {
                       user = new User(value.token, value.userId, value.login, value.username,
                       value.password, Role(value.role.roleId, value.role.title), value.cell);
@@ -100,6 +112,27 @@ class _LoginPageState extends State<LoginPage> {
         ]).show();
   }
 
+  _onAlertWithNoInternet(context) {
+    Alert(
+      context: context,
+      style: alertStyle(),
+      type: AlertType.info,
+      title: "No Internet!",
+      desc: "Connect to network and open app again!",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => SystemNavigator.pop(),
+          color: Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(0.0),
+        ),
+      ],
+    ).show();
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -109,8 +142,22 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void click() {
-    setState(() {
-      alertTitle = !alertTitle;
+    if (alertTitle == false) {
+      setState(() {
+        alertTitle = !alertTitle;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkConnection().then((internet) {
+      if (!internet) {
+        setState(() {
+          noInternet = true;
+        });
+      }
     });
   }
 }

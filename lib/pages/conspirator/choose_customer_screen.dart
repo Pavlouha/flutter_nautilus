@@ -61,7 +61,8 @@ class _CustomerChoosingPageState extends State<CustomerChoosingPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.blueGrey,
-              child: Text("${snapshot.error}"),
+             // child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(

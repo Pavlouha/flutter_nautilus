@@ -5,6 +5,7 @@ import 'package:flutter_nautilus/logic/gunsmith/guns_in_order_gnsmth.dart';
 import 'package:flutter_nautilus/models/gun_in_order.dart';
 import 'package:flutter_nautilus/models/gun_state.dart';
 import 'package:flutter_nautilus/models/user.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../primary_screen.dart';
@@ -74,7 +75,7 @@ class _GunInOrderStorekeeperPageState extends State<GunInOrderStorekeeperPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.indigo,
-              child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -117,10 +118,15 @@ class _GunInOrderStorekeeperPageState extends State<GunInOrderStorekeeperPage> {
       DialogButton(
         onPressed:() {
           debugPrint(_mySelection);
-          changeGunState(_user.token, specific.orderId, _gunStates, _mySelection);
-          Navigator.pop(context);
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
-                  (route) => false);
+          changeGunState(_user.token, specific.orderId, _gunStates, _mySelection).then((value) {
+            if (value != null) {
+              Navigator.pop(context);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
+                      (route) => false);
+            } else {
+              serverError(context);
+            }
+          });
         },
         child: Text( 'New State',
           style: TextStyle(color: Colors.white, fontSize: 20),

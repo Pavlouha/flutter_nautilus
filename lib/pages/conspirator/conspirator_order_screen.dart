@@ -8,6 +8,7 @@ import 'package:flutter_nautilus/models/order_state.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'gun_add_screen.dart';
@@ -83,7 +84,8 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.indigo,
-              child: Text("${snapshot.error}"),
+             // child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -174,6 +176,8 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => GunSelectPage(_user, _commentController.text, gunList)),
                 );
+              } else {
+                noDataError(context);
               }
             },
             child: Text( 'Next',

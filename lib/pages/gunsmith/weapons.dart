@@ -3,6 +3,8 @@ import 'package:flutter_nautilus/logic/guns.dart';
 import 'package:flutter_nautilus/models/gun.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class WeaponsPage extends StatefulWidget {
@@ -69,7 +71,7 @@ class _WeaponsPageState extends State<WeaponsPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.teal,
-              child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -103,6 +105,7 @@ class _WeaponsPageState extends State<WeaponsPage> {
                             (route) => false);
                   } else {
                     debugPrint(value.toString());
+                    serverError(context);
                   }
                 }
                 );
@@ -142,11 +145,19 @@ class _WeaponsPageState extends State<WeaponsPage> {
           DialogButton(
             onPressed:() {
               if (_codeController.text!='' && _priceController.text!='') {
-                insertGun(_user.token, _codeController.text, _priceController.text);
+                insertGun(_user.token, _codeController.text, _priceController.text).then((value) {
+                  if (value != null) {
+                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
+                            (route) => false);
+                  } else {
+                    serverError(context);
+                  }
+                });
+
+              } else {
+                noDataError(context);
               }
-              Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
-                      (route) => false);
             },
             child: Text( 'Next',
               style: TextStyle(color: Colors.white, fontSize: 20),

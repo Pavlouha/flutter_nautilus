@@ -3,6 +3,8 @@ import 'package:flutter_nautilus/logic/conspirator/clients.dart';
 import 'package:flutter_nautilus/models/customer.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class CustomerPage extends StatefulWidget {
@@ -66,7 +68,8 @@ class _CustomerPageState extends State<CustomerPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.blueGrey,
-              child: Text("${snapshot.error}"),
+            //  child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -100,6 +103,7 @@ class _CustomerPageState extends State<CustomerPage> {
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user, 0)),
                             (route) => false);
                   } else {
+                    serverError(context);
                     debugPrint(value.toString());
                   }
                 }
@@ -146,11 +150,18 @@ class _CustomerPageState extends State<CustomerPage> {
           DialogButton(
             onPressed:() {
               if (_coordsController.text!='' && _connectionController.text!='' && _clientController.text!='') {
-                insertClient(_clientController.text, _coordsController.text, _connectionController.text, _user.token);
+                insertClient(_clientController.text, _coordsController.text, _connectionController.text, _user.token).then((value) {
+                  if (value != null) {
+                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
+                            (route) => false);
+                  } else {
+                    serverError(context);
+                  }
+                });
+              } else {
+                noDataError(context);
               }
-              Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
-                      (route) => false);
             },
             child: Text( 'Next',
               style: TextStyle(color: Colors.white, fontSize: 20),

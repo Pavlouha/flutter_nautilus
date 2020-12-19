@@ -27,6 +27,7 @@ dependencies:
   double_back_to_close_app: ^1.2.0
   bottom_navy_bar: ^5.5.0
   airship_flutter: ^4.0.0
+  connectivity: ^2.0.2
   flutter:
     sdk: flutter
 

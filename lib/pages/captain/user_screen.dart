@@ -5,6 +5,8 @@ import 'package:flutter_nautilus/models/role.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/models/user_without_token.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class UsersPage extends StatefulWidget {
@@ -83,7 +85,8 @@ class _UsersPageState extends State<UsersPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.brown,
-              child: Text("${snapshot.error}"),
+             // child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -119,6 +122,7 @@ class _UsersPageState extends State<UsersPage> {
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user, 1)),
                             (route) => false);
                   } else {
+                    serverError(context);
                     debugPrint(value.toString());
                   }
                 }
@@ -191,11 +195,18 @@ class _UsersPageState extends State<UsersPage> {
               && _usernameController.text!='') {
                 debugPrint(_mySelection);
                 insertUser(_loginController.text, _passwordController.text,
-                    _roles, _mySelection, _usernameController.text, _cellController.text, _user.token);
+                    _roles, _mySelection, _usernameController.text, _cellController.text, _user.token).then((value) {
+                      if (value != null) {
+                        Navigator.pop(context);
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
+                                (route) => false);
+                      } else {
+                        serverError(context);
+                      }
+                });
+              } else {
+                noDataError(context);
               }
-              Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,1)),
-                      (route) => false);
             },
             child: Text( 'Next',
               style: TextStyle(color: Colors.white, fontSize: 20),

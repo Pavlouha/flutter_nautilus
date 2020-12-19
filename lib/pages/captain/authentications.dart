@@ -4,6 +4,7 @@ import 'package:flutter_nautilus/logic/captain/auths.dart';
 import 'package:flutter_nautilus/models/auth_class.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 
 class AuthsPage extends StatefulWidget {
   final User _user;
@@ -28,8 +29,13 @@ class _AuthsPageState extends State<AuthsPage> {
         IconButton(icon: Icon(Icons.delete), color: Colors.white,
             onPressed: () {
           authorizationDelete(_user.token).then((value) {
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
-                    (route) => false);
+            if (value != null) {
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
+                      (route) => false);
+            }
+            else {
+              serverError(context);
+            }
           }
           );
             }
@@ -67,7 +73,8 @@ class _AuthsPageState extends State<AuthsPage> {
         } else if (snapshot.hasError) {
           return Container(
             color: Colors.blueGrey,
-            child: Text("${snapshot.error}"),
+           // child: Text("${snapshot.error}"),
+            child: Text("Server error"),
           );
         }
         return Container(

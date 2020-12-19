@@ -7,6 +7,7 @@ import 'package:flutter_nautilus/models/order_state.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'gun_in_order_storekeeper.dart';
@@ -75,7 +76,7 @@ class _OrdersStorekeeperPageState extends State<OrdersStorekeeperPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.indigo,
-              child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
@@ -131,10 +132,16 @@ class _OrdersStorekeeperPageState extends State<OrdersStorekeeperPage> {
             color: Colors.green,
             onPressed:() {
               debugPrint(_mySelection);
-              changeOrderState(_user.token, specific.orderId, _states, _mySelection);
-              Navigator.pop(context);
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
-                      (route) => false);
+              changeOrderState(_user.token, specific.orderId, _states, _mySelection).then((value) {
+                if (value != null) {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
+                          (route) => false);
+                } else {
+                  serverError(context);
+                }
+              });
+
             },
             child: Text( 'New State',
               style: TextStyle(color: Colors.white, fontSize: 20),

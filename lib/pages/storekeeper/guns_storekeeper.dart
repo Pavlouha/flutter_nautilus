@@ -67,7 +67,7 @@ class _GunsPageState extends State<GunsPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.indigo,
-              child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(

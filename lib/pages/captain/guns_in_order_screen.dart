@@ -61,7 +61,8 @@ class _GunInOrderPageState extends State<GunInOrderPage> {
           } else if (snapshot.hasError) {
             return Container(
               color: Colors.indigo,
-              child: Text("${snapshot.error}"),
+            //  child: Text("${snapshot.error}"),
+              child: Text("Server error"),
             );
           }
           return Container(
