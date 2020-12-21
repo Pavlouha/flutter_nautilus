@@ -196,6 +196,9 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
           _states.add(element);
           // debugPrint(element.title);
         });
+        _states.removeAt(2);
+        _states.removeAt(2);
+        _states.removeAt(0);
         _mySelection = _states[0].title;
       });
     });

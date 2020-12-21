@@ -144,6 +144,8 @@ class _GunInOrderStorekeeperPageState extends State<GunInOrderStorekeeperPage> {
           _gunStates.add(element);
           // debugPrint(element.title);
         });
+        _gunStates.removeAt(4);
+        _gunStates.removeAt(0);
         _mySelection = _gunStates[0].title;
       });
     });

@@ -142,6 +142,9 @@ class _GunInOrderGunsmithPageState extends State<GunInOrderGunsmithPage> {
           _gunStates.add(element);
           // debugPrint(element.title);
         });
+        _gunStates.removeAt(4);
+        _gunStates.removeAt(3);
+        _gunStates.removeAt(2);
         _mySelection = _gunStates[0].title;
       });
     });

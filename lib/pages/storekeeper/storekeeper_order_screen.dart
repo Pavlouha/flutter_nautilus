@@ -159,6 +159,10 @@ class _OrdersStorekeeperPageState extends State<OrdersStorekeeperPage> {
           _states.add(element);
           // debugPrint(element.title);
         });
+        _states.removeAt(5);
+        _states.removeAt(4);
+        _states.removeAt(0);
+        _states.removeAt(0);
         _mySelection = _states[0].title;
       });
     });
