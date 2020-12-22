@@ -28,7 +28,7 @@ List<Customer> parseClients(Response response) {
 }
 
 ///Удаляем кастомера
-Future<bool> deleteClient(String token, int id) async {
+Future<String> deleteClient(String token, int id) async {
 
   Dio dio = new Dio();
 

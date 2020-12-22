@@ -3,6 +3,7 @@ import 'package:flutter_nautilus/logic/guns.dart';
 import 'package:flutter_nautilus/models/gun.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/delete_error_alert.dart';
 import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
 import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -99,10 +100,12 @@ class _WeaponsPageState extends State<WeaponsPage> {
             color: Colors.red,
             onPressed:() {
               deleteGun(_user.token, specific.gunId).then((value) {
-                  if (value = true) {
+                  if (value == "true") {
                     Navigator.pop(context);
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user, 0)),
                             (route) => false);
+                  } else if (value=="false") {
+                    deleteError(context);
                   } else {
                     debugPrint(value.toString());
                     serverError(context);

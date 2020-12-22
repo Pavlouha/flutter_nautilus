@@ -5,8 +5,7 @@ import 'package:flutter_nautilus/connectionString.dart';
 import 'package:flutter_nautilus/models/role.dart';
 import 'package:flutter_nautilus/models/user_without_token.dart';
 
-///Получаем список пользователей
-
+/// Получаем список пользователей
 Future<List<UserWithoutToken>> getUsers(String token) async {
 
   Dio dio = new Dio();
@@ -28,8 +27,8 @@ List<UserWithoutToken> parseUsers(Response response) {
   }
 }
 
-///Удаляем юзера
-Future<bool> deleteUser(String token, int id) async {
+/// Удаляем юзера
+Future<String> deleteUser(String token, int id) async {
 
   Dio dio = new Dio();
 

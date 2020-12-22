@@ -3,6 +3,7 @@ import 'package:flutter_nautilus/logic/conspirator/clients.dart';
 import 'package:flutter_nautilus/models/customer.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/delete_error_alert.dart';
 import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
 import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -98,10 +99,12 @@ class _CustomerPageState extends State<CustomerPage> {
             color: Colors.red,
             onPressed:() {
               deleteClient(_user.token, specific.customerId).then((value) {
-                  if (value = true) {
+                  if (value == "true") {
                     Navigator.pop(context);
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user, 0)),
                             (route) => false);
+                  } else if (value=="false") {
+                    deleteError(context);
                   } else {
                     serverError(context);
                     debugPrint(value.toString());

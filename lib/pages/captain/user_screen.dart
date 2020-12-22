@@ -5,6 +5,7 @@ import 'package:flutter_nautilus/models/role.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/models/user_without_token.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/delete_error_alert.dart';
 import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
 import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -117,11 +118,13 @@ class _UsersPageState extends State<UsersPage> {
             onPressed:() {
               if (specific.role.roleId!=0) {
                 deleteUser(_user.token, specific.userId).then((value) {
-                  if (value = true) {
+                  if (value == "true") {
                     Navigator.pop(context);
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user, 1)),
                             (route) => false);
-                  } else {
+                  } else if (value=="false"){
+                    deleteError(context);
+                  } else{
                     serverError(context);
                     debugPrint(value.toString());
                   }

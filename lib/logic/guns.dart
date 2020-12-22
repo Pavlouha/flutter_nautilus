@@ -45,7 +45,7 @@ Future<bool> insertGun(String token, String vendorCode, String price) async {
 }
 
 ///Удаляем пушку
-Future<bool> deleteGun(String token, int gunId) async {
+Future<String> deleteGun(String token, int gunId) async {
 
   Dio dio = new Dio();
 
