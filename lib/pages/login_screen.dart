@@ -2,11 +2,13 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_nautilus/logic/check_internet_connection.dart';
+import 'package:flutter_nautilus/logic/check_server_connection.dart';
 import 'package:flutter_nautilus/logic/logging_in.dart';
 import 'package:flutter_nautilus/models/role.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
 import 'package:flutter_nautilus/widgets/alert_style.dart';
+import 'package:flutter_nautilus/widgets/connection_error.dart';
 import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -48,7 +50,13 @@ class _LoginPageState extends State<LoginPage> {
                       if (noInternet) {
                         _onAlertWithNoInternet(context);
                       } else{
-                        _onAlertWithCustomContentPressed(context);
+                        checkServerConnection().then((value) {
+                        if (value != true) {
+                          connectError(context);
+                        } else {
+                          _onAlertWithCustomContentPressed(context);
+                        }
+                      });
                       }
                     }
                   ),

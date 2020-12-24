@@ -9,6 +9,7 @@ import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/captain/guns_in_order_screen.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
 import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
+import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'gun_add_screen.dart';
@@ -141,7 +142,11 @@ class _OrdersConspiratorPageState extends State<OrdersConspiratorPage> {
             color: Colors.green,
             onPressed:() {
               debugPrint(_mySelection);
-              changeOrderState(_user.token, specific.orderId, _states, _mySelection);
+              changeOrderState(_user.token, specific.orderId, _states, _mySelection).then((value) {
+                if (value == null ) {
+                  serverError(context);
+                }
+              });
               Navigator.pop(context);
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user,0)),
                       (route) => false);

@@ -5,6 +5,7 @@ import 'package:flutter_nautilus/models/role.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/models/user_without_token.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/connection_error.dart';
 import 'package:flutter_nautilus/widgets/delete_error_alert.dart';
 import 'package:flutter_nautilus/widgets/no_data_entered_alert.dart';
 import 'package:flutter_nautilus/widgets/server_error_alert.dart';
@@ -118,6 +119,7 @@ class _UsersPageState extends State<UsersPage> {
             onPressed:() {
               if (specific.role.roleId!=0) {
                 deleteUser(_user.token, specific.userId).then((value) {
+                  debugPrint(value.toString());
                   if (value == "true") {
                     Navigator.pop(context);
                     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PrimaryPage(_user, 1)),
@@ -126,7 +128,7 @@ class _UsersPageState extends State<UsersPage> {
                     deleteError(context);
                   } else{
                     serverError(context);
-                    debugPrint(value.toString());
+
                   }
                 }
                 );
@@ -194,7 +196,10 @@ class _UsersPageState extends State<UsersPage> {
         buttons: [
           DialogButton(
             onPressed:() {
-              if (_cellController.text!='' && _loginController.text!='' && _passwordController.text!=''
+              if (_mySelection == null) {
+                connectError(context);
+              }
+                if (_cellController.text!='' && _loginController.text!='' && _passwordController.text!=''
               && _usernameController.text!='') {
                 debugPrint(_mySelection);
                 insertUser(_loginController.text, _passwordController.text,

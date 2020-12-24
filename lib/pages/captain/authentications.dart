@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nautilus/logic/captain/auths.dart';
+import 'package:flutter_nautilus/logic/check_server_connection.dart';
 
 import 'package:flutter_nautilus/models/auth_class.dart';
 import 'package:flutter_nautilus/models/user.dart';
 import 'package:flutter_nautilus/pages/primary_screen.dart';
+import 'package:flutter_nautilus/widgets/connection_error.dart';
 import 'package:flutter_nautilus/widgets/server_error_alert.dart';
 
 class AuthsPage extends StatefulWidget {
